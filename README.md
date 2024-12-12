@@ -1,4 +1,5 @@
 Challenges Faced During Implementation And Findings:
+
 1. Prime Number Generation: the problem is Generating a large random prime (p) was challenging, as smaller primes could compromise security, while larger primes increased computation time.
     Solution: Used sympy.isprime to validate prime numbers efficiently and opted for 8-bit primes for this demonstration. Larger primes can be used for enhanced security
    
