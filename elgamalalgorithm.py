@@ -1,10 +1,34 @@
 import random
-from sympy import isprime, mod_inverse  # Import functions for prime numbers check and modular inverse
+
+def isprime(n):
+    if n <= 1:  # Numbers less than or equal to 1 are not prime
+        return False
+    if n <= 3: # 2 and 3 are prime numbers
+        return True
+    if n % 2 == 0 or n % 3 == 0: # Eliminate multiples of 2 and 3
+        return False
+    i = 5
+    while i * i <= n: # Check divisors from 5 to sqrt(n)
+        if n % i == 0 or n % (i + 2) == 0: # Check if divisible by i or i + 2
+            return False
+        i += 6 # Skip even numbers and multiples of 3
+    return True
+
+def mod_inverse(a, m):
+    m1, x1, x2 = m, 0, 1  #Initialize m1 as the original modulus, x1 and x2 for coefficients
+
+    while a > 1: #loop untill a becomes 1
+        q = a // m # Compute the quotient of a divided by m
+        m, a = a % m, m # Update m and a (similar to the Euclidean algorithm)
+        x1, x2 = x2 - q * x1, x1 # Update the coefficients x1 and x2 based on the quotient
+    return x2 + m1 if x2 < 0 else x2  # Ensure the modular inverse is positive
+
+
 
 # Generate a random prime number
 def generate_prime():
     while True:
-        candidate = random.getrandbits(8)  # Generate a random 8-bit number
+        candidate = random.getrandbits(16)  # Generate a random 16-bit number
         if isprime(candidate):  # Check if the number is prime
             return candidate  # Return the prime number
 
