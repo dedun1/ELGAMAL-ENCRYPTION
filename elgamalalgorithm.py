@@ -69,7 +69,6 @@ def main():
             else:
                 print("Invalid option")
         elif choice == "2":
-            print("exiting the program.")
             break
         else:
             print("Invalid option")
